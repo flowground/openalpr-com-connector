@@ -1,0 +1,52 @@
+{
+    "type": "object",
+    "properties": {
+        "secret_key": {
+            "required": true,
+            "type": "string"
+        },
+        "recognize_vehicle": {
+            "required": false,
+            "type": "integer",
+            "enum": [
+                0,
+                1
+            ],
+            "default": 0
+        },
+        "country": {
+            "required": true,
+            "type": "string"
+        },
+        "state": {
+            "required": false,
+            "type": "string",
+            "default": ""
+        },
+        "return_image": {
+            "required": false,
+            "type": "integer",
+            "enum": [
+                0,
+                1
+            ],
+            "default": 0
+        },
+        "topn": {
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000,
+            "default": 10
+        },
+        "prewarp": {
+            "required": false,
+            "type": "string",
+            "default": ""
+        },
+        "requestBody": {
+            "type": "string",
+            "format": "binary"
+        }
+    }
+}

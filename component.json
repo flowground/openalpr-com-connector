@@ -1,0 +1,102 @@
+{
+    "title": "OpenALPR Cloud",
+    "description": "The OpenALPR Cloud API allows you to send images to the cloud for processing. \nThe image will be analyzed for license plates and vehicle make/models.  The results \nare returned in JSON format\n",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/openalpr.com/2.0.1/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.openalpr.com/v2",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "getConfig": {
+            "main": "./lib/actions/getConfig.js",
+            "title": "Get a list of available results for plate and vehicle recognition\n",
+            "description": "Get a list of available results for plate and vehicle recognition\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getConfig.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "recognizeFile": {
+            "main": "./lib/actions/recognizeFile.js",
+            "title": "Send an image for OpenALPR to analyze and provide metadata back\nThe image is sent as a file using a form data POST\n",
+            "description": "Send an image for OpenALPR to analyze and provide metadata back\nThe image is sent as a file using a form data POST\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/recognizeFile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "recognizeBytes": {
+            "main": "./lib/actions/recognizeBytes.js",
+            "title": "Send an image for OpenALPR to analyze and provide metadata back\nThe image is sent as base64 encoded bytes.\n",
+            "description": "Send an image for OpenALPR to analyze and provide metadata back\nThe image is sent as base64 encoded bytes.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/recognizeBytes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "recognizeUrl": {
+            "main": "./lib/actions/recognizeUrl.js",
+            "title": "Send an image for OpenALPR to analyze and provide metadata back\nThe image is sent as a URL.  The OpenALPR service will download the image \nand process it\n",
+            "description": "Send an image for OpenALPR to analyze and provide metadata back\nThe image is sent as a URL.  The OpenALPR service will download the image \nand process it\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/recognizeUrl.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
